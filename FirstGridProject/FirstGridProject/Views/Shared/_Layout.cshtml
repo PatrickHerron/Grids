@@ -6,15 +6,30 @@
     <title>@ViewData["Title"] - FirstGridProject</title>
 
     <environment include="Development">
+
+        <link href="~/css/slick.css" rel="stylesheet" />
+        <link href="~/css/slick-theme.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/graph-creator.css" rel="stylesheet" />
         <script src="~/js/jquery.js"></script>
         <link href="~/css/jsgrid.min.css" rel="stylesheet" />
         <link href="~/css/jsgrid-theme.min.css" rel="stylesheet" />
+        <script src="~/js/howler.js"></script>
+        @*<script>
+
+        var sound = new Howl({
+            src: ['sound.webm', 'sound.mp3']
+        });
+        </script>*@
 
         <script src="~/js/jsgrid.js"></script>
         <script src="~/js/d3.js"></script>
         <script src="~/js/d3.min.js"></script>
+        <script src="https://d3js.org/d3-drag.v1.min.js"></script>
+        <script src="~/js/slick.min.js"></script>
+        @*<script src="~/js/FileSaver.min.js"></script>
+        <script src="~/js/graph-creator.js"></script>*@
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -41,6 +56,11 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="JSGrid">JSGrid</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="SlickCarousel">SlickCarousel</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Howler">Howler</a></li>
+
+                    <li><a asp-area="Simulation" asp-controller="Simulation" asp-action="SimulationView">Simulation</a></li>
+                    <li><a asp-area="Chart" asp-controller="Chart" asp-action="DCChart">Chart</a></li>
                 </ul>
             </div>
         </div>
@@ -57,6 +77,7 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

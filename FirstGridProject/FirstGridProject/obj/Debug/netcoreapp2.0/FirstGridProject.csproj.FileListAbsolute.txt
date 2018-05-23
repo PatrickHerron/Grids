@@ -9,3 +9,14 @@ C:\Users\padh1\source\repos\FirstGridProject\FirstGridProject\bin\Debug\netcorea
 C:\Users\padh1\source\repos\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.dll
 C:\Users\padh1\source\repos\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.pdb
 C:\Users\padh1\source\repos\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.csprojResolveAssemblyReference.cache
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\bin\Debug\netcoreapp2.0\FirstGridProject.deps.json
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\bin\Debug\netcoreapp2.0\FirstGridProject.runtimeconfig.json
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\bin\Debug\netcoreapp2.0\FirstGridProject.runtimeconfig.dev.json
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\bin\Debug\netcoreapp2.0\FirstGridProject.dll
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\bin\Debug\netcoreapp2.0\FirstGridProject.pdb
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.csproj.CoreCompileInputs.cache
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.AssemblyInfoInputs.cache
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.AssemblyInfo.cs
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.dll
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.pdb
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.csprojAssemblyReference.cache

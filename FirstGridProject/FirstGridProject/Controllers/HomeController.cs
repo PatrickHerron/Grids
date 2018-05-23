@@ -33,6 +33,16 @@ namespace FirstGridProject.Controllers
             return View();
         }
 
+        public IActionResult SlickCarousel()
+        {
+            ViewData["Message"] = "Slick Carousel Example";
+            return View();
+        }
+        public IActionResult Howler()
+        {
+            ViewData["Message"] = "Howler Example";
+            return View();
+        }
 
         public IActionResult Error()
         {

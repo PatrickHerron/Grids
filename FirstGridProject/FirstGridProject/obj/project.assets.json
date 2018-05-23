@@ -3126,6 +3126,12 @@
           }
         }
       },
+      "Slick/1.5.11": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.7.0"
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.7": {
         "type": "package",
         "dependencies": {
@@ -8317,6 +8323,26 @@
         "version.txt"
       ]
     },
+    "Slick/1.5.11": {
+      "sha512": "Pm7HdDZjPer5MBUBMUB66rLB9WXPNMxBHKhdjvCq82fdphOCSOAiuuSOIiJ8boWwaPfod9+xMRQPQFJQGUn/Aw==",
+      "type": "package",
+      "path": "slick/1.5.11",
+      "files": [
+        "content/Content/Slick/ajax-loader.gif",
+        "content/Content/Slick/fonts/slick.eot",
+        "content/Content/Slick/fonts/slick.svg",
+        "content/Content/Slick/fonts/slick.ttf",
+        "content/Content/Slick/fonts/slick.woff",
+        "content/Content/Slick/slick-theme.css",
+        "content/Content/Slick/slick-theme.scss",
+        "content/Content/Slick/slick.css",
+        "content/Content/Slick/slick.scss",
+        "content/Scripts/Slick/slick.js",
+        "content/Scripts/Slick/slick.min.js",
+        "slick.1.5.11.nupkg.sha512",
+        "slick.nuspec"
+      ]
+    },
     "SQLitePCLRaw.bundle_green/1.1.7": {
       "sha512": "Kw+n4CUhQ8S4YAPmpRUldO8S7c4LU7HHukJF0v5Sfggf8Ia9YVdIh0dYkMvKvS+DTX+OBORSMqPM0CGfAzFtVA==",
       "type": "package",
@@ -13144,31 +13170,29 @@
       "Microsoft.AspNetCore.All >= 2.0.6",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.3",
+      "Slick >= 1.5.11",
       "jQuery >= 3.3.1"
     ]
   },
   "packageFolders": {
     "C:\\Users\\padh1\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\padh1\\source\\repos\\FirstGridProject\\FirstGridProject\\FirstGridProject.csproj",
+      "projectUniqueName": "C:\\Users\\padh1\\Documents\\GitHub\\Grids\\FirstGridProject\\FirstGridProject\\FirstGridProject.csproj",
       "projectName": "FirstGridProject",
-      "projectPath": "C:\\Users\\padh1\\source\\repos\\FirstGridProject\\FirstGridProject\\FirstGridProject.csproj",
+      "projectPath": "C:\\Users\\padh1\\Documents\\GitHub\\Grids\\FirstGridProject\\FirstGridProject\\FirstGridProject.csproj",
       "packagesPath": "C:\\Users\\padh1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\padh1\\source\\repos\\FirstGridProject\\FirstGridProject\\obj\\",
+      "outputPath": "C:\\Users\\padh1\\Documents\\GitHub\\Grids\\FirstGridProject\\FirstGridProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\padh1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -13203,6 +13227,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[2.0.3, )"
+          },
+          "Slick": {
+            "target": "Package",
+            "version": "[1.5.11, )"
           },
           "jQuery": {
             "target": "Package",

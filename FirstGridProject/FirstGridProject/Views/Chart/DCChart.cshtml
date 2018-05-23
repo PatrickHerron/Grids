@@ -1,0 +1,206 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title> @ViewData["Title"] </title>
+    <meta charset="UTF-8">
+    @*<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/dc.css" />*@
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/dc.css" rel="stylesheet" />
+    <style>
+        #table td {
+            padding-left: 10px;
+        }
+        .column {
+            float: left;
+        }
+
+            /* Left and right column */
+            .column.side {
+                width: 25%;
+            }
+
+            /* Middle column */
+            .column.middle {
+                width: 75%;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container" style=" margin-top: 50px">
+        <script src="~/js/header.js"></script>
+        <!-- not sure why all these styles necessary, not the point of this -->
+        <div class="column side">
+            
+            <div id="table"></div>
+            <div id="download-type" style="clear: both; float: left">
+                <div><label><input type=radio name="operation" value="raw" checked="true">&nbsp;all data</label></div>
+                <div><label><input type=radio name="operation" value="table">&nbsp;table data</label></div>
+            </div>
+            <div style="float: left">
+                <button class="btn" id="download">download</button>
+            </div>
+        </div>
+        <div class="column middle">
+            <div id="chart-ring-year" style="width:300px; height:330px">
+                <div class="reset" style="visibility: hidden;">
+                    selected: <span class="filter"></span>
+                    <a href="javascript:yearRingChart.filterAll();dc.redrawAll();">reset</a>
+                </div>
+            </div>
+            <div id="chart-hist-spend" style="width:300px; height:330px">
+                <div class="reset" style="visibility: hidden;">
+                    range: <span class="filter"></span>
+                    <a href="javascript:spendHistChart.filterAll();dc.redrawAll();">reset</a>
+                </div>
+            </div>
+            <div id="chart-row-spenders">
+                <div class="reset" style="visibility: hidden;">
+                    selected: <span class="filter"></span>
+                    <a href="javascript:spenderRowChart.filterAll();dc.redrawAll();">reset</a>
+                </div>
+            </div>
+        </div>
+            <script src="~/js/d3.js"></script>
+            <script src="~/js/crossfilter.js"></script>
+            <script src="~/js/dc.js"></script>
+            <script src="~/js/faker.js"></script>
+            <script src="~/js/FileSaver.js"></script>
+            <script type="text/javascript">
+                var yearRingChart = dc.pieChart("#chart-ring-year"),
+                    spendHistChart = dc.barChart("#chart-hist-spend"),
+                    spenderRowChart = dc.rowChart("#chart-row-spenders");
+
+                var table = dc.dataTable('#table');
+                function createRecord() {
+                    return {
+                        Name: faker.random.arrayElement(['Mr A', 'Mr B', 'Mr C', 'Mr D']),
+                        Spent: faker.random.arrayElement(['$10', '$20', '$30', '$40', '$50', '$60', '$70', '$80', '$90']),
+                        Year: faker.random.number({ min: 2010, max: 2018 })
+                    }
+                };
+                function getAllData() {
+                    var dataArr = [];
+                    for (i = 0; i < 1000; i++) {
+                        dataArr.push(createRecord());
+                    }
+                    return dataArr;
+                };
+                // use static or load via d3.csv("spendData.csv", function(error, spendData) {/* do stuff */});
+                var data = getAllData();
+
+                // normalize/parse data
+                data.forEach(function (d) {
+                    d.Spent = d.Spent.match(/\d+/)[0];
+                });
+                // set crossfilter
+                var ndx = crossfilter(data),
+                    yearDim = ndx.dimension(function (d) { return +d.Year; }),
+                    spendDim = ndx.dimension(function (d) { return Math.floor(d.Spent / 10); }),
+                    nameDim = ndx.dimension(function (d) { return d.Name; }),
+                    spendPerYear = yearDim.group().reduceSum(function (d) { return +d.Spent; }),
+                    spendPerName = nameDim.group().reduceSum(function (d) { return +d.Spent; }),
+                    spendHist = spendDim.group().reduceCount();
+                yearRingChart
+                    .width(300)
+                    .height(300)
+                    .dimension(yearDim)
+                    .group(spendPerYear)
+                    .innerRadius(80)
+                    .controlsUseVisibility(true);
+                spendHistChart
+                    .dimension(spendDim)
+                    .group(spendHist)
+                    .x(d3.scaleLinear().domain([0, 10]))
+                    .elasticY(true)
+                    .controlsUseVisibility(true);
+                spendHistChart.xAxis().tickFormat(function (d) { return d * 10 }); // convert back to base unit
+                spendHistChart.yAxis().ticks(2);
+                spenderRowChart
+                    .dimension(nameDim)
+                    .group(spendPerName)
+                    .elasticX(true)
+                    .controlsUseVisibility(true);
+                var allDollars = ndx.groupAll().reduceSum(function (d) { return +d.Spent; });
+                table
+                    .dimension(spendDim)
+                    .group(function (d) {
+                        return d.value;
+                    })
+                    .sortBy(function (d) { return +d.Spent; })
+                    .showGroups(false)
+                    .columns(['Name',
+                        {
+                            label: 'Spent',
+                            format: function (d) {
+                                return '$' + d.Spent;
+                            }
+                        },
+                        'Year',
+                        {
+                            label: 'Percent of Total',
+                            format: function (d) {
+                                return Math.floor((d.Spent / allDollars.value()) * 100) + '%';
+                            }
+                        }])
+                    //.size(Infinity);
+                    .size(data.length);
+                //dc.render();
+
+                //dc.update();
+                d3.select('#download')
+                    .on('click', function () {
+                        var data = nameDim.top(Infinity);
+                        if (d3.select('#download-type input:checked').node().value === 'table') {
+                            data = data.sort(function (a, b) {
+                                return table.order()(table.sortBy()(a), table.sortBy()(b));
+                            });
+                            data = data.map(function (d) {
+                                var row = {};
+                                table.columns().forEach(function (c) {
+                                    row[table._doColumnHeaderFormat(c)] = table._doColumnValueFormat(c, d);
+                                });
+                                return row;
+                            });
+                        }
+                        var blob = new Blob([d3.csvFormat(data)], { type: "text/csv;charset=utf-8" });
+                        saveAs(blob, 'data.csv');
+                    });
+
+
+                //var ofs = 0, pag = 17;
+                //function display() {
+                //    d3.select('#begin')
+                //        .text(ofs);
+                //    d3.select('#end')
+                //        .text(ofs + pag - 1);
+                //    d3.select('#last')
+                //        .attr('disabled', ofs - pag < 0 ? 'true' : null);
+                //    d3.select('#next')
+                //        .attr('disabled', ofs + pag >= ndx.size() ? 'true' : null);
+                //    d3.select('#size').text(ndx.size());
+                //}
+                //function update() {
+                //    chart.beginSlice(ofs);
+                //    chart.endSlice(ofs + pag);
+                //    display();
+                //}
+                //function next() {
+                //    ofs += pag;
+                //            update();
+                //            chart.redraw();
+                //        }
+                //        function last() {
+                //            ofs -= pag;
+                //            update();
+                //            chart.redraw();
+                //}
+                dc.renderAll();
+            </script>
+
+        </div>
+</body>
+</html>
