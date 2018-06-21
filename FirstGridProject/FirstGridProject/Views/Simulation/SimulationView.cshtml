@@ -1,15 +1,39 @@
-﻿
-<svg width="960" height="500">
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="~/css/graph-creator.css" rel="stylesheet" />
+</head>
+
+<body>
     <div id="graph">
         <div id="toolbox">
             <input type="file" id="hidden-file-upload">
             <input id="upload-input" type="image" title="upload graph" src="~/images/upload-icon.png" alt="upload graph">
             <input type="image" id="download-input" title="download graph" src="~/images/download-icon.png" alt="download graph">
             <input type="image" id="delete-graph" title="delete graph" src="~/images/trash-icon.png" alt="delete graph">
+            <button id="run">Run</button>
+            <input type="text" id="textboxid" />
         </div>
     </div>
-</svg>
-    @*<script src="~/js/d3.js"></script>*@
-    @*<script src="//cdn.jsdelivr.net/filesaver.js
-        /0.1/FileSaver.min.js"></script>*@
-    
+    <script src="//d3js.org/d3.v3.js" charset="utf-8"></script>
+    <script src="~/js/FileSaver.js"></script>
+    <script src="~/js/graph-creator.js"></script>
+    <script>
+            $("#run").click(function (e) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Simulation/RunSimulation",
+                    dataType: "json",
+                    success: function (result) {
+                        $("#textboxid").val(result);
+                    }
+                });
+                
+                return true;
+            });
+
+    </script>
+</body>
+
+</html>
+

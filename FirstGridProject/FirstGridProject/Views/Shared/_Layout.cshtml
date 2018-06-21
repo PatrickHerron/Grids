@@ -28,8 +28,7 @@
         <script src="~/js/d3.min.js"></script>
         <script src="https://d3js.org/d3-drag.v1.min.js"></script>
         <script src="~/js/slick.min.js"></script>
-        @*<script src="~/js/FileSaver.min.js"></script>
-        <script src="~/js/graph-creator.js"></script>*@
+        
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -59,8 +58,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="SlickCarousel">SlickCarousel</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Howler">Howler</a></li>
 
-                    <li><a asp-area="Simulation" asp-controller="Simulation" asp-action="SimulationView">Simulation</a></li>
-                    <li><a asp-area="Chart" asp-controller="Chart" asp-action="DCChart">Chart</a></li>
+                    <li><a asp-area="Simulation" asp-controller="Simulation" asp-action="SimulationView">Flow Simulation</a></li>
+                    <li><a asp-area="Simulation" asp-controller="Simulation" asp-action="DragView">Drag Simulation</a></li>
+                    <li><a asp-area="Chart" asp-controller="Chart" asp-action="DCChart">Chart And Table</a></li>
                 </ul>
             </div>
         </div>

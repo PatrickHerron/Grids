@@ -20,3 +20,4 @@ C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debu
 C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.dll
 C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.pdb
 C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\FirstGridProject.csprojAssemblyReference.cache
+C:\Users\padh1\Documents\GitHub\Grids\FirstGridProject\FirstGridProject\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
